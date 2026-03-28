@@ -19,6 +19,9 @@
 
   let turns = $state(0);
 
+  let matches = $state(0);
+  let targetMatches = $state(0);
+
   // Import card front and back images dynamically.
 
   // This will load any files that are in the /src/lib/assets/backs directory.
@@ -42,8 +45,10 @@
     // Clear the list of cards.
     cards = [];
 
-    // Reset the turn counter.
+    // Reset the counters.
     turns = 0;
+    matches = 0;
+    targetMatches = 0;
 
     // Shuffle the available card images.
     const shuffledCardImages = shuffle(availableCardImages);
@@ -64,6 +69,9 @@
         image: shuffledCardImages[i],
         flipped: false,
       });
+
+      // Increment the target number of matches.
+      targetMatches++;
     }
 
     // Finally, shuffle the list of cards.
@@ -91,10 +99,10 @@
 
         if (cards[choiceOne].image === cards[choiceTwo].image) {
           // The two cards match.
-          console.log("match");
-          // Clear the choices.
+          // Clear the choices and increment the matches counter.
           choiceOne = null;
           choiceTwo = null;
+          matches++;
         } else {
           // The two cards don't match.
           // Pause the game so we see the second card.
@@ -133,7 +141,10 @@
   {/each}
 </div>
 
-<div class="my-6 prose lg:prose-xl">
-  <p>Turns: {turns}</p>
-  <button class="btn btn-primary" onclick={init}>Restart</button>
+<div class="items-center justify-between sm:flex">
+  <div>Turns: {turns}</div>
+  <div>Matches: {matches} of {targetMatches}</div>
+  <div>
+    <button class="btn btn-primary" onclick={init}>Restart</button>
+  </div>
 </div>
