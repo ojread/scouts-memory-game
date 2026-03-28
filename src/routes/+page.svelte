@@ -4,6 +4,7 @@
 
   // Define a card type with properties.
   type Card = {
+    id: string;
     image: string;
     flipped: boolean;
   };
@@ -47,14 +48,19 @@
     // Shuffle the available card images.
     const shuffledCardImages = shuffle(availableCardImages);
 
+    // Generate unique card ids using a timestamp.
+    const now = Date.now();
+
     // Loop six times.
     for (let i = 0; i < 6; i++) {
       // Add two copies of a card to the list.
       cards.push({
+        id: `${now}${i}1`,
         image: shuffledCardImages[i],
         flipped: false,
       });
       cards.push({
+        id: `${now}${i}2`,
         image: shuffledCardImages[i],
         flipped: false,
       });
@@ -116,7 +122,7 @@
 </div>
 
 <div class="my-6 grid grid-cols-4 gap-2 sm:gap-6">
-  {#each cards as card, index (index)}
+  {#each cards as card, index (card.id)}
     <CardComponent
       back={backImage}
       flipped={card.flipped}
