@@ -7,6 +7,6 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<div class="container mx-auto">
+<div class="container mx-auto px-6">
   {@render children()}
 </div>

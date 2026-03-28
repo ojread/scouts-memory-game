@@ -129,7 +129,7 @@
   <p>Tap or click the cards to find the matching pairs.</p>
 </div>
 
-<div class="my-6 grid grid-cols-4 gap-2 sm:gap-6">
+<div class="my-6 grid grid-cols-3 gap-2 sm:gap-6 md:grid-cols-4">
   {#each cards as card, index (card.id)}
     <CardComponent
       back={backImage}
@@ -141,7 +141,7 @@
   {/each}
 </div>
 
-<div class="items-center justify-between sm:flex">
+<div class="flex items-center justify-between">
   <div>Turns: {turns}</div>
   <div>Matches: {matches} of {targetMatches}</div>
   <div>
