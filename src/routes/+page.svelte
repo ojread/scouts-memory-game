@@ -80,8 +80,9 @@
 
   // Handle a click on the card at the given index.
   function handleChoice(index: number) {
-    // Only react if the game hasn't been paused.
-    if (!paused) {
+    // Only react if the game hasn't been paused and the clicked card hasn't
+    // been flipped already.
+    if (!paused && !cards[index].flipped) {
       // Note the card chosen.
       if (choiceOne === null) {
         choiceOne = index;
