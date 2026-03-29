@@ -22,6 +22,8 @@
   let matches = $state(0);
   let targetMatches = $state(0);
 
+  let showGameOverModal = $state(false);
+
   // Import card front and back images dynamically.
 
   // This will load any files that are in the /src/lib/assets/backs directory.
@@ -45,10 +47,11 @@
     // Clear the list of cards.
     cards = [];
 
-    // Reset the counters.
+    // Reset the game state.
     turns = 0;
     matches = 0;
     targetMatches = 0;
+    showGameOverModal = false;
 
     // Shuffle the available card images.
     const shuffledCardImages = shuffle(availableCardImages);
@@ -104,6 +107,11 @@
           choiceOne = null;
           choiceTwo = null;
           matches++;
+
+          if (matches >= 6) {
+            paused = true;
+            showGameOverModal = true;
+          }
         } else {
           // The two cards don't match.
           // Pause the game so we see the second card.
@@ -126,7 +134,7 @@
 </script>
 
 <div class="my-6 prose lg:prose-xl">
-  <h1>Game title here</h1>
+  <h1>Scouts memory game</h1>
   <p>Tap or click the cards to find the matching pairs.</p>
 </div>
 
@@ -149,3 +157,18 @@
     <button class="btn btn-primary" onclick={init}>Restart</button>
   </div>
 </div>
+
+<dialog id="gameOverModal" class="modal" open={showGameOverModal}>
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Game over</h3>
+    <p class="py-4">
+      You matched all the cards and it only took you {turns} turns!
+    </p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn btn-primary" onclick={init}>Restart</button>
+      </form>
+    </div>
+  </div>
+</dialog>
