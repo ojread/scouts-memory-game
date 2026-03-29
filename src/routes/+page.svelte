@@ -80,8 +80,9 @@
 
   // Handle a click on the card at the given index.
   function handleChoice(index: number) {
-    // Only react if the game hasn't been paused.
-    if (!paused) {
+    // Only react if the game hasn't been paused and the clicked card hasn't
+    // been flipped already.
+    if (!paused && !cards[index].flipped) {
       // Note the card chosen.
       if (choiceOne === null) {
         choiceOne = index;
@@ -129,7 +130,7 @@
   <p>Tap or click the cards to find the matching pairs.</p>
 </div>
 
-<div class="my-6 grid grid-cols-3 gap-2 sm:gap-6 md:grid-cols-4">
+<div class="my-6 grid grid-cols-4 gap-2 sm:gap-6">
   {#each cards as card, index (card.id)}
     <CardComponent
       back={backImage}
