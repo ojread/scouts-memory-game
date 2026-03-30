@@ -164,10 +164,13 @@
     <p class="py-4">
       You matched all the cards and it only took you {turns} turns!
     </p>
+    {#if turns <= 8}
+      <p class=" text-6xl font-extrabold text-primary">Perfect!</p>
+    {/if}
     <div class="modal-action">
       <form method="dialog">
         <!-- if there is a button in form, it will close the modal -->
-        <button class="btn btn-primary" onclick={init}>Restart</button>
+        <button class="btn btn-primary" onclick={init}>Play again</button>
       </form>
     </div>
   </div>
