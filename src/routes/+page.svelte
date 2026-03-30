@@ -44,17 +44,18 @@
 
   // Function that sets up a new game.
   function init() {
-    // Clear the list of cards.
-    cards = [];
-
     // Reset the game state.
+    choiceOne = null;
+    choiceTwo = null;
     turns = 0;
+    cards = [];
     matches = 0;
     targetMatches = 0;
     showGameOverModal = false;
+    paused = false;
 
     // Shuffle the available card images.
-    const shuffledCardImages = shuffle(availableCardImages);
+    shuffle(availableCardImages);
 
     // Generate unique card ids using a timestamp.
     const now = Date.now();
@@ -64,12 +65,12 @@
       // Add two copies of a card to the list.
       cards.push({
         id: `${now}${i}1`,
-        image: shuffledCardImages[i],
+        image: availableCardImages[i],
         flipped: false,
       });
       cards.push({
         id: `${now}${i}2`,
-        image: shuffledCardImages[i],
+        image: availableCardImages[i],
         flipped: false,
       });
 
@@ -78,7 +79,7 @@
     }
 
     // Finally, shuffle the list of cards.
-    cards = shuffle(cards);
+    shuffle(cards);
   }
 
   // Handle a click on the card at the given index.
