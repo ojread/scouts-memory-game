@@ -52,6 +52,7 @@
     matches = 0;
     targetMatches = 0;
     showGameOverModal = false;
+    paused = false;
 
     // Shuffle the available card images.
     const shuffledCardImages = shuffle(availableCardImages);
