@@ -14,12 +14,12 @@
     <div
       class="absolute inset-0 size-full overflow-hidden rounded-2xl border-4 backface-hidden"
     >
-      <img src={back} alt="Card back" />
+      <img src={back} alt="Card back" class="size-full" />
     </div>
     <div
       class="absolute inset-0 size-full rotate-y-180 overflow-hidden rounded-2xl border-4 bg-gray-300 backface-hidden sm:p-4"
     >
-      <img src={front} alt="Card front" />
+      <img src={front} alt="Card front" class="size-full" />
     </div>
   </div>
 </button>
